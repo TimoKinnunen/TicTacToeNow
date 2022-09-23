@@ -1,0 +1,143 @@
+﻿<Page
+    x:Class="TicTacToeNow.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PageTitleTextBlock.Margin" Value="0,0,0,0"/>
+                        <Setter Target="PageContentScrollViewer.Margin" Value="0,0,0,0"/>
+                        <Setter Target="AppBarButtonScrollViewer.Margin" Value="0,0,0,0"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PageTitleTextBlock.Margin" Value="12,0,0,0"/>
+                        <Setter Target="PageContentScrollViewer.Margin" Value="24,0,0,0"/>
+                        <Setter Target="AppBarButtonScrollViewer.Margin" Value="24,0,0,0"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="PageTitleTextBlock" 
+                   Grid.Row="0" 
+                   Style="{StaticResource TitleTextBlockStyle}" 
+                   Text="TicTacToeNow"/>
+
+        <ScrollViewer x:Name="AppBarButtonScrollViewer"
+                      Grid.Row="1">
+            <StackPanel x:Name="AppBarButtonStackPanel"
+                        Orientation="Horizontal">
+                <AppBarButton x:Name="HomeAppBarButton"
+                              Tapped="HomeAppBarButton_Tapped"
+                              Label="Home"
+                              Icon="Home"/>
+                <AppBarSeparator/>
+                <AppBarButton x:Name="NewGameAppBarButton"
+                              Tapped="NewGameAppBarButton_Tapped"
+                              Label="New game"
+                              Icon="Play"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <ScrollViewer x:Name="PageContentScrollViewer"
+                      Grid.Row="2"
+                      Style="{StaticResource PageContentScrollViewerStyle}">
+            <StackPanel x:Name="PageContentStackPanel">
+
+                <!--page content goes here-->
+
+                <StackPanel x:Name="NextPlayerStackPanel" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Visibility="Visible">
+                    <TextBlock Text="Next player:"
+                               Padding="0,0,8,0"/>
+                    <TextBlock x:Name="NextPlayerTextBlock" Text="X"/>
+                </StackPanel>
+
+                <StackPanel x:Name="WinnerStackPanel"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Visibility="Collapsed">
+                    <TextBlock Text="Winner is:"
+                               Padding="0,0,8,0"
+                               Foreground="YellowGreen"/>
+                    <TextBlock x:Name="WinnerIsTextBlock" 
+                               Text="0"
+                               Foreground="YellowGreen"/>
+                </StackPanel>
+
+                <StackPanel x:Name="DrawStackPanel"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Visibility="Collapsed">
+                    <TextBlock Text="Game ended in a draw." 
+                               Foreground="Red"/>
+                </StackPanel>
+
+                <Grid x:Name="BoardGrid"
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Center">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Top Row-->
+                    <Button x:Name="TopLeft" Grid.Row="0" Grid.Column="0"  Margin="5" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="135" Height="143" Background="#2C6FCF" BorderBrush="#2C6FCF" FontSize="100" FontFamily="Ubuntu" Tapped="TopLeft_Tapped"/>
+                    <Button x:Name="TopMiddle" Grid.Row="0" Grid.Column="1" Margin="5" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="143"  Background="#2C6FCF" BorderBrush="#2C6FCF" FontSize="100" FontFamily="Ubuntu" Tapped="TopMiddle_Tapped"/>
+                    <Button x:Name="TopRight" Grid.Row="0" Grid.Column="2" Margin="5" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="136" Height="143" Background="#2C6FCF" BorderBrush="#2C6FCF" FontSize="100" FontFamily="Ubuntu" Tapped="TopRight_Tapped"/>
+                    <!--Middle Row-->
+                    <Button x:Name="MiddleLeft" Grid.Row="1" Grid.Column="0" Margin="5" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="135" Height="143"  Background="#2C6FCF" BorderBrush="#2C6FCF" FontSize="100" FontFamily="Ubuntu" Tapped="MiddleLeft_Tapped"/>
+                    <Button x:Name="Middle" Grid.Row="1" Grid.Column="1" Margin="5" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="135" Height="143" Background="#2C6FCF" BorderBrush="#2C6FCF" FontSize="100" FontFamily="Ubuntu" Tapped="Middle_Tapped"/>
+                    <Button x:Name="MiddleRight" Grid.Row="1" Grid.Column="2" Margin="5" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="136" Height="143" Background="#2C6FCF" BorderBrush="#2C6FCF" FontSize="100" FontFamily="Ubuntu" Tapped="MiddleRight_Tapped"/>
+                    <!--Bottom Row-->
+                    <Button x:Name="BottomLeft" Grid.Row="2" Grid.Column="0" Margin="5" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="143" Background="#2C6FCF" BorderBrush="#2C6FCF" FontSize="100" FontFamily="Ubuntu" Tapped="BottomLeft_Tapped" />
+                    <Button x:Name="BottomMiddle" Grid.Row="2" Grid.Column="1" Margin="5" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="143" Background="#2C6FCF" BorderBrush="#2C6FCF" FontSize="100" FontFamily="Ubuntu" Tapped="BottomMiddle_Tapped" />
+                    <Button x:Name="BottomRight" Grid.Row="2" Grid.Column="2" Margin="5" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="143" Background="#2C6FCF" BorderBrush="#2C6FCF" FontSize="100" FontFamily="Ubuntu" Tapped="BottomRight_Tapped" />
+                </Grid>
+
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock Text="Number of turns is:"
+                               Padding="0,0,8,0"/>
+                    <TextBlock x:Name="NumberOfTurns" Text="0"/>
+                </StackPanel>
+              
+                <!--page content goes here-->
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
